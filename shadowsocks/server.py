@@ -25,7 +25,7 @@ def main():
                          'will be ignored')
     else:
         config['port_password'] = {}
-        server_port = os.environ['OPENSHIFT_ENV_VAR'] || config['server_port']
+        server_port = os.environ['OPENSHIFT_ENV_VAR'] or config['server_port']
         if type(server_port) == list:
             for a_server_port in server_port:
                 config['port_password'][a_server_port] = config['password']
