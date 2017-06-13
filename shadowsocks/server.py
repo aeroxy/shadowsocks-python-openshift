@@ -6,7 +6,12 @@ import os
 import logging
 import signal
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../'))
+ON_OPENSHIFT = True if 'OPENSHIFT_REPO_DIR' in os.environ else False
+
+if ON_OPENSHIFT:
+    sys.path.insert(0, os.path.join(os.environ['OPENSHIFT_REPO_DIR'], '../'))
+else:
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../'))
 from shadowsocks import shell, daemon, eventloop, tcprelay, udprelay, \
     asyncdns, manager
 
